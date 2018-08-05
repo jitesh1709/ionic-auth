@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <h2>Welcome to Login and Register Page</h2><br>
+  <p>Login Here</p>
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)" autocomplete="off">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input placeholder="Email" name="username" type="text" required [(ngModel)]="username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input placeholder="Password" name="password" type="password" required [(ngModel)]="password"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+          <button ion-button class="submit-btn" type="submit" [disabled]="!loginForm.form.valid">Login
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
+  <p>Register Here</p>
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" autocomplete="off">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input placeholder="Email" name="username" type="text" required [(ngModel)]="regUsername"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input placeholder="Password" name="password" type="password" required [(ngModel)]="regPassword"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input placeholder="Confirm Password" name="password" type="password" required [(ngModel)]="cnfPassword"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+          <button ion-button class="submit-btn" type="submit" [disabled]="!registerForm.form.valid">   Regsiter
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
+</ion-content>
