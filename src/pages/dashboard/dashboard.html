@@ -2,23 +2,38 @@
   <ion-navbar>
     <ion-title>dashboard</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header>	
 <ion-content padding>
-	<ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
-	<div *ngIf="searching" class="spinner-container">
-        <ion-spinner></ion-spinner>
-    </div>
- 	<h5>This page displays the limited number of <strong>Bangalore</strong> based github users data with their <strong>ID's </strong> , <strong>Users Login</strong> and <strong>Users Image</strong> You can also search for the user by their usersname</h5>
-	<ion-row>
-		<ion-col class="col-md-5">
-			<ol>	
-          		<ion-list inset>
-          			<ion-item *ngFor="let item of items">
-          				<p><strong>{{ item.title }}</strong></p>  
-          				<!-- and  <strong>{{ item.title }}</strong> and <img src="{{user.avatar_url}}" style="display: inline-block;" height="10%" width="10%"></p> -->
-          			</ion-item>
-                </ion-list>
-            </ol>
-        </ion-col>
-	</ion-row>
+	<h6>Please View on Mobile Devices for Better View</h6>
+ 	<p style="font-size: 15px;">This page displays the limited number of <strong>Bangalore</strong> based github users data with their <strong>ID's </strong> , <strong>Users Login</strong> and <strong>Users Image</strong> You can also search for the user by their usersname</p>
+	<ion-card *ngFor="let user of pagedItems">
+		<ion-item >
+			<ion-avatar item-start>
+				<img src="{{user.avatar_url}}">
+			</ion-avatar>
+			<h2>Id - <strong>{{user.id}}</strong></h2>
+			<p>Username - <strong>{{user.login}}</strong></p>
+		</ion-item>
+		<img src="{{user.avatar_url}}" height="15%" width="15%">
+		<ion-card-content>
+				Profile Link -	<a href="{{user.html_url}}">Click</a>
+			</ion-card-content>
+	</ion-card>
+	<ul *ngIf="pager.pages && pager.pages.length" style="align-content: center;" class="pagination">
+			<li [ngClass]="{disabled:pager.currentPage === 1}">
+					<a (click)="setPage(1)">First</a>
+			</li>
+			<li [ngClass]="{disabled:pager.currentPage === 1}">
+					<a (click)="setPage(pager.currentPage - 1)">Previous</a>
+			</li>
+			<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+					<a (click)="setPage(page)">{{page}}</a>
+			</li>
+			<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+					<a (click)="setPage(pager.currentPage + 1)">Next</a>
+			</li>
+			<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+					<a (click)="setPage(pager.totalPages)">Last</a>
+			</li>
+	</ul>
 </ion-content>
