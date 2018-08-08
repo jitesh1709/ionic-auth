@@ -3,28 +3,22 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <h2>Welcome to Login and Register Page</h2><br>
-  <p>Login Here.. Please use both username and password as jitesh</p>
+<ion-content>
+  <h2>Welcome to Login and Register Page. Please View on Mobile Devices for better view</h2><br>
+  <p>Login Here.... Use both username and password as jitesh</p>
 <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" autocomplete="off">
-      <ion-row>
-        <ion-col>
-          <ion-list inset>
+          <ion-list>
             <ion-item>
+              <ion-label>Username</ion-label>
               <ion-input placeholder="Email" name="username" type="text" required [(ngModel)]="username"></ion-input>
             </ion-item>
             <ion-item>
+              <ion-label>Password</ion-label>
               <ion-input placeholder="Password" name="password" type="password" required [(ngModel)]="password"></ion-input>
             </ion-item>
           </ion-list>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-          <button ion-button class="submit-btn" type="submit" [disabled]="!loginForm.form.valid">Login
-          </button>
-        </ion-col>
-      </ion-row>
-    </form>
+          <div padding>
+              <button ion-button color="primary" [disabled]="!loginForm.form.valid" block>Login</button>
+          </div>
+</form>
 </ion-content>
