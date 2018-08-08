@@ -10,32 +10,13 @@ import { DashboardPage } from '../dashboard/dashboard';
 })
 export class HomePage {
 	constructor(public navCtrl: NavController,public formBuilder : FormBuilder) {}
-	regUsername : string;password:string;
-	regPassword : string;username:string;
-	cnfPassword : string;
-	register(registerForm){
-	if(this.regPassword == this.cnfPassword){
-		localStorage.setItem('username',this.regUsername);
-		localStorage.setItem('password',this.regPassword);
-		localStorage.setItem('cnfPassword',this.cnfPassword);
-		alert("registered success");
-	}else{
-		alert("Password Mismatch");
-	}
-}
+	password:string;username:string;
 	login(loginForm){
-		// console.log(this.password);
-		var tempUsername = localStorage.getItem('username');
-		var tempPassword = localStorage.getItem('password');
-		console.log(tempPassword);
-		if(this.username == tempUsername && this.password == tempPassword){
-			console.log("Login Success");
-			localStorage.clear();
+		if(this.username == 'jitesh' && this.password == 'jitesh'){
+			alert("Navigating");
 			this.navCtrl.push(DashboardPage);
 		}else{
-			alert("Please register first");
-			console.log("wrong password");
-			localStorage.clear();
+			alert("Wrong username and password");
 		}
 	}
 }

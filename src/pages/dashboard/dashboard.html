@@ -1,24 +1,24 @@
-<!--
-  Generated template for the DashboardPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <ion-title>dashboard</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+	<ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+	<div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+    </div>
+ 	<h5>This page displays the limited number of <strong>Bangalore</strong> based github users data with their <strong>ID's </strong> , <strong>Users Login</strong> and <strong>Users Image</strong> You can also search for the user by their usersname</h5>
 	<ion-row>
-		<ion-list>	
-			<button ion-button full class="btn-primary" (click)='alert()'>1st list</button>
-		</ion-list>
-		<ion-list>
-		    <button ion-button full class="btn-primary" (click)='alert()'>2nd list</button>
-		</ion-list>
-		<ion-list>    
-		    <button ion-button full class="btn-primary" (click)='alert()'>3rd list</button>
-		</ion-list>
+		<ion-col class="col-md-5">
+			<ol>	
+          		<ion-list inset>
+          			<ion-item *ngFor="let item of items">
+          				<p><strong>{{ item.title }}</strong></p>  
+          				<!-- and  <strong>{{ item.title }}</strong> and <img src="{{user.avatar_url}}" style="display: inline-block;" height="10%" width="10%"></p> -->
+          			</ion-item>
+                </ion-list>
+            </ol>
+        </ion-col>
 	</ion-row>
 </ion-content>
