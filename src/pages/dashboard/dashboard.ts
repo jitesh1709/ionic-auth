@@ -16,6 +16,7 @@ export class DashboardPage implements OnInit {
   private users:any[];
   pagedItems:any[];
   pager:any={};
+  searchTerm:string="";
   url='assets/response.json'; 
   ngOnInit(){
     //setting data
@@ -42,5 +43,16 @@ export class DashboardPage implements OnInit {
     
     //get current page of items
     this.pagedItems = this.users.slice(this.pager.startIndex, this.pager.endIndex+1);
+  }
+  filterByName(){
+    this.users = [];
+    if(this.searchTerm!=""){
+      this.pagedItems.forEach(user => {
+        if(user.login.toLowerCase().indexOf(this.searchTerm.toLowerCase())>=0){
+          this.users.push(user);
+        }
+      });
+    }
+    console.log(this.users);
   }
 }
